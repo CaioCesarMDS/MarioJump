@@ -1,0 +1,55 @@
+@keyframes walkPipe {
+    from {
+        right: -80px;
+    }
+    to {
+        right: 100%;
+    }
+}
+
+@keyframes marioJump {
+    0% {
+        bottom: 0;
+    }
+    40% {
+        bottom: 180px;
+    }
+    50% {
+        bottom: 190px
+    }
+    60% {
+        bottom: 180px;
+    }
+    100% {
+        bottom: 0;
+    }
+}
+
+@keyframes cloudsA {
+    from {
+        right: -330px;
+    }
+    to {
+        right: 100%;
+    }
+}
+
+@keyframes game-overA {
+    from {
+        top: -750px;
+    }
+    to {
+        top: 0;
+    }
+}
+
+@keyframes blink {
+    from {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    to {
+        transform: scaleZ(1);
+        opacity: .1;
+    }
+}
