@@ -1,6 +1,16 @@
+@import url(https://fonts.googleapis.com/css?family=VT323:regular);
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     position: relative;
+    font-family: VT323 , times;
+}
+
+p {
+    font-weight: 500;
+    font-size: 22px;
+    color: #000000;
+    animation: blink 1.8s infinite linear;
 }

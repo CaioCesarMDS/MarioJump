@@ -14,12 +14,28 @@
 
     <body>
         <div class="game-board">
+            <div class="info">
+                <div class="score">
+                    SCORE
+                    <span id="score">000</span>
+                </div>
+                <div class="time">
+                    TIME
+                    <span id="time">000</span>
+                </div>
+            </div>
             <img src="./src/images/clouds.png" alt="clouds" class="clouds" width="330" />
             <img src="./src/images/mario.gif" alt="mario" class="mario" width="150" />
             <img src="./src/images/pipe.png" alt="pipe" class="pipe" width="75" />
+            <!-- <img src="./src/images/ground.png" alt="ground" class="ground"> -->
+            <div class="ground"></div>
             <div class="game-over">
                 <img src="./src/images/game-over-final.png" alt="game-over" width="450" />
                 <p>Press *SPACE* to play again</p>
+            </div>
+            <div class="pause">
+                <p id="pause">||</p>
+                <p id="pause-text">PAUSE</p>
             </div>
         </div>
         <script src="./src/js/index.js"></script>
