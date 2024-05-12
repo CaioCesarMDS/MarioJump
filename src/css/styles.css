@@ -15,6 +15,12 @@
     align-items: center;
 }
 
+#audio-on-off {
+    position: absolute;
+    top: 5em;
+    right: 10em;
+}
+
 .menu {
     display: flex;
     align-items: center;
@@ -159,3 +165,5 @@
     font-size: 60px;
     font-weight: 500;
 }
+
+
