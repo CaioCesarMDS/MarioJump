@@ -74,6 +74,7 @@ function main(get) {
                 audioJump.play();
                 setTimeout(() => {
                     mario.classList.remove("jump");
+                    audioJump.load();
                 }, 500);
             }
         }
@@ -244,24 +245,26 @@ function main(get) {
 
 document.addEventListener("click", (e) => {
     const target = e.target.parentElement;
+    const targett = e.target;
     const mainMenu = document.querySelector(".main-menu");
     const newGameBtn = document.querySelector(".new-game");
     const loadScoreBtn = document.querySelector(".load-score");
     const returnMenu = document.querySelector(".return-menu-btn");
     const timer = document.querySelector(".timer");
     const music = document.getElementById("background-music");
-    const audio = document.getElementById("audio-on-off");
+    const audioImg = document.getElementById("audio-on-off");
+    const currentUrl = window.location.href;
 
     let count = 0;
 
-    if (target === audio) {
-        if (audio.children[0].src === "/src/images/audio-off.svg") {
-            audio.children[0].src = "/src/images/audio-on.svg";
+    if (targett === audioImg) {
+        if (audioImg.src === currentUrl + "src/images/audio-off.svg") {
+            audioImg.src = currentUrl + "src/images/audio-on.svg";
             music.muted = false;
             music.volume = 0.8;
             music.play();
         } else {
-            audio.children[0].src = "/src/images/audio-off.svg";
+            audioImg.src = currentUrl + "src/images/audio-off.svg";
             music.pause();
         }
     }
@@ -275,8 +278,9 @@ document.addEventListener("click", (e) => {
                 timer.textContent = count;
             }
             if (count === 4) {
-                clearInterval(stopWatch);
                 timer.style.display = "none";
+                count = 0;
+                clearInterval(stopWatch);
             }
         }, 1000);
         main(false);
@@ -291,10 +295,12 @@ document.addEventListener("click", (e) => {
                 timer.textContent = count;
             }
             if (count === 4) {
-                clearInterval(stopWatch);
                 timer.style.display = "none";
+                count = 0;
+                clearInterval(stopWatch);
             }
         }, 1000);
+
         main(true);
     }
 
