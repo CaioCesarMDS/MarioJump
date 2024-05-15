@@ -6,6 +6,7 @@
     box-sizing: border-box;
     position: relative;
     font-family: VT323 , times;
+    user-select: none;
 }
 
 p {

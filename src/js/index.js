@@ -1,4 +1,4 @@
-function main(get) {
+function main(getScore, musicOn) {
     const mainMenu = document.querySelector(".main-menu");
 
     const mario = document.querySelector(".mario");
@@ -31,6 +31,7 @@ function main(get) {
     gameSetup();
 
     function gameSetup() {
+        gamerOverEl.style.display = "none";
         mario.src = "/src/images/mario.png";
         mario.style.width = "190px";
         mario.style.animationPlayState = "paused";
@@ -64,9 +65,7 @@ function main(get) {
 
         startCount();
 
-        if (get) {
-            getSavedScore();
-        }
+        if (getScore) getSavedScore();
 
         function jump(event) {
             if (event.keyCode === 32 && mainMenu.style.display === "none") {
@@ -147,7 +146,6 @@ function main(get) {
         function resumeGame(event) {
             if (event.keyCode === 27 && pause.style.display === "flex") {
                 document.removeEventListener("keydown", resumeGame);
-
                 pause.style.display = "none";
 
                 mario.src = "/src/images/mario.gif";
@@ -167,7 +165,7 @@ function main(get) {
             saveScoreRecord();
             resetCount();
 
-            music.pause();
+            musicOn ? music.pause() : 0;
             gameOverAudio.play();
 
             pipe.style.animation = "none";
@@ -194,7 +192,7 @@ function main(get) {
         function restartGame(event) {
             gameOverAudio.load();
             if (gameOverFlag && event.keyCode === 32) {
-                music.play();
+                musicOn ? music.play() : 0;
                 mario.src = "/src/images/mario.gif";
                 mario.style.width = "150px";
                 mario.style.marginLeft = "0";
@@ -243,16 +241,18 @@ function main(get) {
     }
 }
 
+let musicOn = false;
+
 document.addEventListener("click", (e) => {
     const target = e.target.parentElement;
     const targett = e.target;
     const mainMenu = document.querySelector(".main-menu");
+    const audioImg = document.getElementById("audio-on-off");
+    const music = document.getElementById("background-music");
     const newGameBtn = document.querySelector(".new-game");
     const loadScoreBtn = document.querySelector(".load-score");
     const returnMenu = document.querySelector(".return-menu-btn");
     const timer = document.querySelector(".timer");
-    const music = document.getElementById("background-music");
-    const audioImg = document.getElementById("audio-on-off");
     const currentUrl = window.location.href;
 
     let count = 0;
@@ -263,15 +263,18 @@ document.addEventListener("click", (e) => {
             music.muted = false;
             music.volume = 0.8;
             music.play();
+            musicOn = true;
         } else {
             audioImg.src = currentUrl + "src/images/audio-off.svg";
             music.pause();
+            musicOn = false;
         }
     }
 
     if (target === newGameBtn) {
         mainMenu.style.display = "none";
         timer.style.display = "flex";
+        count = 0;
         const stopWatch = setInterval(() => {
             count++;
             if (count <= 3) {
@@ -279,16 +282,16 @@ document.addEventListener("click", (e) => {
             }
             if (count === 4) {
                 timer.style.display = "none";
-                count = 0;
                 clearInterval(stopWatch);
             }
         }, 1000);
-        main(false);
+        main(false, musicOn);
     }
 
     if (target === loadScoreBtn) {
         mainMenu.style.display = "none";
         timer.style.display = "flex";
+        count = 0;
         const stopWatch = setInterval(() => {
             count++;
             if (count <= 3) {
@@ -296,16 +299,14 @@ document.addEventListener("click", (e) => {
             }
             if (count === 4) {
                 timer.style.display = "none";
-                count = 0;
                 clearInterval(stopWatch);
             }
         }, 1000);
-
-        main(true);
+        main(true, musicOn);
     }
 
     if (target === returnMenu) {
         mainMenu.style.display = "flex";
-        music.play();
+        musicOn ? music.play() : 0;
     }
 });
