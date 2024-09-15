@@ -8,10 +8,12 @@
         <link rel="shortcut icon" href="./src/images/icon.svg" type="image/x-icon" />
 
         <title>Mario Jump</title>
+
+        <script type="module" src="./src/js/main.js" defer></script>
+
         <link rel="stylesheet" href="./src/css/styles.css" />
         <link rel="stylesheet" href="./src/css/reset.css" />
     </head>
-
     <body>
         <audio
             src="./src/audio/mario-song.m4a"
@@ -20,7 +22,7 @@
             hidden
             muted
         ></audio>
-        <audio src="./src/audio/jump.mp3" id="audio-jump" hidden></audio>
+        <audio src="./src/audio/jump.mp3" id="jump-audio" hidden></audio>
         <audio
             src="./src/audio/punctuation-mark.mp3"
             id="punctuation-mark-audio"
@@ -43,14 +45,14 @@
                     />
                 </div>
                 <div class="button new-game">
-                    <button>NEW GAME</button>
+                    <button aria-label="Start New Game">NEW GAME</button>
                 </div>
                 <div class="button load-score">
-                    <button>LOAD SCORE</button>
+                    <button aria-label="Load Score">LOAD SCORE</button>
                 </div>
             </div>
         </div>
-        <div class="game-board">
+        <div class="game-board" loading="lazy">
             <div class="info">
                 <div class="standard">
                     <div class="score">
@@ -66,11 +68,29 @@
                     <span id="best-score">000</span>
                 </div>
             </div>
-            <img src="./src/images/clouds.png" alt="clouds" class="clouds" width="330" />
-            <img src="./src/images/mario.gif" alt="mario" class="mario" width="150" />
-            <img src="./src/images/pipe.png" alt="pipe" class="pipe" width="75" />
-            <div class="ground"></div>
-            <div class="timer">0</div>
+            <img
+                src="./src/images/clouds.png"
+                alt="clouds"
+                class="clouds"
+                width="330"
+                loading="lazy"
+            />
+            <img
+                src="./src/images/mario.gif"
+                alt="mario"
+                class="mario"
+                width="150"
+                loading="lazy"
+            />
+            <img
+                src="./src/images/pipe.png"
+                alt="pipe"
+                class="pipe"
+                width="75"
+                loading="lazy"
+            />
+            <div class="ground" loading="lazy"></div>
+            <div class="timer" loading="lazy">0</div>
             <div class="game-over">
                 <div class="game-over-container">
                     <img
@@ -80,7 +100,7 @@
                     />
                     <p>Press *SPACE* to play again</p>
                     <div class="button return-menu-btn">
-                        <button>BACK TO MENU</button>
+                        <button aria-label="Return to Menu">BACK TO MENU</button>
                     </div>
                 </div>
             </div>
@@ -89,6 +109,5 @@
                 <p id="pause-text">PAUSED</p>
             </div>
         </div>
-        <script src="./src/js/index.js"></script>
     </body>
 </html>
