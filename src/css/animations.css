@@ -22,12 +22,14 @@
     }
     40% {
         bottom: 220px;
+        animation-timing-function: ease-in;
     }
     50% {
         bottom: 230px;
     }
     60% {
         bottom: 220px;
+        animation-timing-function: ease-out;
     }
     100% {
         bottom: 100px;
@@ -49,6 +51,7 @@
     }
     to {
         top: 0;
+        animation-timing-function: ease-out;
     }
 }
 
@@ -58,7 +61,7 @@
         opacity: 1;
     }
     to {
-        transform: scaleZ(1);
+        transform: scale(1);
         opacity: 0.1;
     }
 }
@@ -75,9 +78,10 @@
 @keyframes buttonAnimation {
     0% {
         transform: scale(1);
+        box-shadow: 0 0 0 0 black;
     }
     100% {
-        box-shadow: 5px 5px 0 0  black;
+        box-shadow: 5px 5px 0 0 black;
         transform: translate(-5px, -5px);
     }
 }
