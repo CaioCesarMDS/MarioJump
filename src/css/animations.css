@@ -7,12 +7,12 @@
     }
 }
 
-@keyframes walkPipe {
+@keyframes pipeMove {
     from {
-        right: -80px;
+        left: 100%;
     }
     to {
-        right: 100%;
+        left: -80px;
     }
 }
 

@@ -94,7 +94,7 @@
 .pipe {
     position: absolute;
     bottom: 8vh;
-    animation: walkPipe 2s infinite linear;
+    animation: pipeMove 2s infinite linear;
 }
 
 .mario {
