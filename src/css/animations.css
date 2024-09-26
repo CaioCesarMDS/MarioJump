@@ -66,22 +66,12 @@
     }
 }
 
-@keyframes moveGround {
+@keyframes groundMove {
     from {
-        background-position: 100% 0;
+        background-position: 0 0;
     }
     to {
-        background-position: 0 0;
+        background-position: -100rem 0;
     }
 }
 
-@keyframes buttonAnimation {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 black;
-    }
-    100% {
-        box-shadow: 5px 5px 0 0 black;
-        transform: translate(-5px, -5px);
-    }
-}

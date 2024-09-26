@@ -38,17 +38,28 @@
             />
             <div class="menu">
                 <div class="game-logo">
-                    <img
-                        src="./src/images/game-logo.png"
-                        alt="mario-jump-logo"
-                        width="300"
-                    />
+                    <h1>Mario</h1>
+                    <h2>Jump</h2>
                 </div>
-                <div class="button new-game">
-                    <button aria-label="Start New Game">NEW GAME</button>
-                </div>
-                <div class="button load-score">
-                    <button aria-label="Load Score">LOAD SCORE</button>
+                <div class="menu-btns">
+                    <span class="pt pt-1"
+                        ><img src="/src/images/point.png" alt="" width="8"
+                    /></span>
+                    <span class="pt pt-2"
+                        ><img src="/src/images/point.png" alt="" width="8"
+                    /></span>
+                    <span class="pt pt-3"
+                        ><img src="/src/images/point.png" alt="" width="8"
+                    /></span>
+                    <span class="pt pt-4"
+                        ><img src="/src/images/point.png" alt="" width="8"
+                    /></span>
+                    <div class="button new-game">
+                        <button aria-label="Start New Game">NEW GAME</button>
+                    </div>
+                    <div class="button load-score">
+                        <button aria-label="Load Score">LOAD SCORE</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -68,8 +79,9 @@
                     <span id="best-score">000</span>
                 </div>
             </div>
+            <div class="timer" loading="lazy">0</div>
             <img
-                src="./src/images/clouds.png"
+                src="./src/images/clouds.webp"
                 alt="clouds"
                 class="clouds"
                 width="330"
@@ -83,21 +95,16 @@
                 loading="lazy"
             />
             <img
-                src="./src/images/pipe.png"
+                src="./src/images/pipe.webp"
                 alt="pipe"
                 class="pipe"
                 width="75"
                 loading="lazy"
             />
             <div class="ground" loading="lazy"></div>
-            <div class="timer" loading="lazy">0</div>
             <div class="game-over">
                 <div class="game-over-container">
-                    <img
-                        src="./src/images/game-over-final.png"
-                        alt="game-over"
-                        width="450"
-                    />
+                    <img src="./src/images/game-over.webp" alt="game-over" width="450" />
                     <p>Press *SPACE* to play again</p>
                     <div class="button return-menu-btn">
                         <button aria-label="Return to Menu">BACK TO MENU</button>

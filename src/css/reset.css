@@ -1,5 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=VT323:regular);
 
+@font-face {
+    font-family: 'MarioFont';
+    src: url('../fonts/SuperMario256.ttf') format('truetype');
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -7,6 +12,7 @@
     position: relative;
     font-family: VT323 , times;
     user-select: none;
+    border: none;
 }
 
 p {

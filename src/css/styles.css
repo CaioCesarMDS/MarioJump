@@ -1,7 +1,7 @@
 @import "./animations.css";
 
 .main-menu {
-    background-image: url(../images/background.png);
+    background-image: url(../images/menu-image.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -33,16 +33,80 @@
 .game-logo {
     animation: logoDown 2s ease;
     bottom: 6em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.button {
+.game-logo h1 {
+    font-size: 8em;
+    font-family: MarioFont, times;
+    color: #cb2424;
+    text-shadow: 5px 5px 2px black;
+}
+
+.game-logo h2 {
+    font-size: 7em;
+    font-family: MarioFont, times;
+    color: blue;
+    text-shadow: 5px 5px 2px black;
+}
+
+.menu-btns {
+    width: 35vh;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    background-color: #b0500c;
+    border-top: wheat solid 3px;
+    border-left: wheat solid 3px;
+    border-right: black solid 3px;
+    border-bottom: black solid 3px;
+}
+
+.pt {
+    position: absolute;
+}
+
+.pt-1 {
+    top: 0.5em;
+    left: 0.5em;
+}
+
+.pt-2 {
+    top: 0.5em;
+    right: 0.5em;
+}
+
+.pt-3 {
+    bottom: 0.5em;
+    right: 0.5em;
+}
+
+.pt-4 {
+    bottom: 0.5em;
+    left: 0.5em;
+}
+
+button {
+    font-size: 2em;
+    color: wheat;
+    background-color: transparent;
+    text-shadow: 2px 2px 0px black;
+}
+
+/* .button {
     margin-top: 10px;
-    border: black solid 2px;
+    border: 2px solid black;
     padding: 2px;
 }
 
-.button:hover {
-    animation: buttonAnimation .3s ease both;
+.button:hover button {
+    background: linear-gradient(#4fb86f, #ffefef);
 }
 
 .button button {
@@ -51,9 +115,9 @@
     font-size: 28px;
     font-weight: 900;
     cursor: pointer;
-    background-color: transparent;
+    background: linear-gradient(#0cf753, #ffefef);
     border: black solid 2px;
-}
+} */
 
 .game-board {
     width: 100%;
@@ -78,7 +142,8 @@
 }
 
 .score,
-.time, .best-score {
+.time,
+.best-score {
     margin: 0.5em;
     color: white;
     font-size: 38px;
@@ -107,14 +172,13 @@
 }
 
 .ground {
-    background-image: url("../images/ground.png");
-    background-repeat: repeat-x;
-    background-size: contain;
+    background-image: url("../images/ground.webp");
+    background-size: auto 100%;
     position: fixed;
     bottom: 0;
     height: 10vh;
-    width: 100%;
-    animation: moveGround 6s linear infinite;
+    width: 100rem;
+    animation: groundMove 6s linear infinite;
 }
 
 .timer {
@@ -166,5 +230,3 @@
     font-size: 60px;
     font-weight: 500;
 }
-
-
