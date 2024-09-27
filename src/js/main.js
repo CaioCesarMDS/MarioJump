@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const music = document.getElementById("background-music");
     const newGameBtn = document.querySelector(".new-game");
     const loadScoreBtn = document.querySelector(".load-score");
-    const returnMenu = document.querySelector(".return-menu-btn");
+    const returnMenu = document.querySelector(".game-over-return-btn");
 
     // Turn music on or off
     audioImg.addEventListener("click", () => {
@@ -45,5 +45,3 @@ document.addEventListener("DOMContentLoaded", () => {
         if (musicOn) music.play();
     });
 });
-
-

@@ -1,7 +1,7 @@
 @import "./animations.css";
 
 .main-menu {
-    background-image: url(../images/menu-image.jpg);
+    background-image: url(../images/menu-image.webp);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -26,11 +26,11 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 600px;
-    height: 500px;
+    width: 100%;
+    height: 70vh;
 }
 
-.game-logo {
+.menu-logo {
     animation: logoDown 2s ease;
     bottom: 6em;
     display: flex;
@@ -39,28 +39,23 @@
     align-items: center;
 }
 
-.game-logo h1 {
+.menu-logo-mario span {
     font-size: 8em;
-    font-family: MarioFont, times;
-    color: #cb2424;
-    text-shadow: 5px 5px 2px black;
 }
 
-.game-logo h2 {
+.menu-logo-jump span {
     font-size: 7em;
-    font-family: MarioFont, times;
-    color: blue;
-    text-shadow: 5px 5px 2px black;
 }
 
-.menu-btns {
-    width: 35vh;
-    height: 30vh;
+.menu-options {
+    margin-top: 3em;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1em;
+    width: 26%;
+    height: 100%;
+    gap: 2em;
     background-color: #b0500c;
     border-top: wheat solid 3px;
     border-left: wheat solid 3px;
@@ -92,32 +87,23 @@
     left: 0.5em;
 }
 
-button {
-    font-size: 2em;
-    color: wheat;
-    background-color: transparent;
-    text-shadow: 2px 2px 0px black;
+.menu-options .menu-item {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    width: 70%;
 }
 
-/* .button {
-    margin-top: 10px;
-    border: 2px solid black;
-    padding: 2px;
+.menu-options .menu-item img {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.button:hover button {
-    background: linear-gradient(#4fb86f, #ffefef);
+.menu-options .menu-item:hover img {
+    visibility: visible;
+    opacity: 1;
 }
-
-.button button {
-    width: 180px;
-    padding: 20px 30px;
-    font-size: 28px;
-    font-weight: 900;
-    cursor: pointer;
-    background: linear-gradient(#0cf753, #ffefef);
-    border: black solid 2px;
-} */
 
 .game-board {
     width: 100%;
@@ -128,16 +114,16 @@ button {
     background: linear-gradient(#0096ff, #ffefef);
 }
 
-.info {
+.game-board-info {
     display: flex;
     justify-content: space-between;
 }
 
-.info .standard {
+.game-board-info .standard {
     display: flex;
 }
 
-.info .best-score {
+.game-board-info .best-score {
     display: none;
 }
 
@@ -181,8 +167,7 @@ button {
     animation: groundMove 6s linear infinite;
 }
 
-.timer {
-    display: flex;
+.game-board-timer {
     align-items: center;
     justify-content: center;
     font-size: 120px;
@@ -191,7 +176,7 @@ button {
     display: none;
 }
 
-.game-over {
+.game-board-game-over {
     overflow: hidden;
     flex-direction: column;
     align-items: center;
@@ -206,15 +191,15 @@ button {
     align-items: center;
 }
 
-.return-menu-btn {
+.game-over-return-btn {
     margin-top: 5em;
 }
 
-.return-menu-btn button {
-    width: 200px;
+.game-over-return-btn button {
+    width: 100%;
 }
 
-.pause {
+.game-board-pause {
     flex-direction: column;
     align-items: center;
     justify-content: center;

@@ -15,12 +15,12 @@ export class Game {
         this.punctuationMarkAudio = document.getElementById("punctuation-mark-audio");
 
         // Elements that appear on the screen
+        this.gamerOverElement = document.querySelector(".game-board-game-over");
+        this.pauseElement = document.querySelector(".game-board-pause");
+        this.timerElement = document.querySelector(".game-board-timer");
         this.timeElement = document.getElementById("time");
-        this.gamerOverElement = document.querySelector(".game-over");
-        this.pauseElement = document.querySelector(".pause");
         this.scoreElement = document.getElementById("score");
         this.bestScoreElement = document.querySelector(".best-score");
-        this.timerElement = document.querySelector(".timer");
 
         // Points and time counter
         this.time = 0;

@@ -1,0 +1,61 @@
+@import url(https://fonts.googleapis.com/css?family=VT323:regular);
+
+@font-face {
+    font-family: "MarioFont";
+    src: url("../fonts/SuperMario256.ttf") format("truetype");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+    font-family: VT323, times;
+    user-select: none;
+    border: none;
+    outline: none;
+}
+
+p {
+    font-weight: 500;
+    font-size: 22px;
+    color: #000000;
+    animation: blink 1.8s infinite linear;
+}
+
+.menu-logo span {
+    font-family: MarioFont, times;
+    text-shadow: 4px 4px 3px black;
+}
+
+button {
+    text-align: center;
+    font-size: 2em;
+    letter-spacing: 2px;
+    flex-grow: 1;
+    color: wheat;
+    background-color: transparent;
+    text-shadow: 2px 2px 0px black;
+    transition: transform .5s ;
+}
+
+button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+#red {
+    color: red;
+}
+
+#green {
+    color: #4bc04b;
+}
+
+#blue {
+    color: blue;
+}
+
+#yellow {
+    color: #d6d626;
+}

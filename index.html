@@ -12,36 +12,34 @@
         <script type="module" src="./src/js/main.js" defer></script>
 
         <link rel="stylesheet" href="./src/css/styles.css" />
-        <link rel="stylesheet" href="./src/css/reset.css" />
+        <link rel="stylesheet" href="./src/css/config.css" />
     </head>
     <body>
-        <audio
-            src="./src/audio/mario-song.m4a"
-            id="background-music"
-            loop
-            hidden
-            muted
-        ></audio>
-        <audio src="./src/audio/jump.mp3" id="jump-audio" hidden></audio>
-        <audio
-            src="./src/audio/punctuation-mark.mp3"
-            id="punctuation-mark-audio"
-            hidden
-        ></audio>
-        <audio src="./src/audio/game-over.mp3" id="game-over-audio" hidden></audio>
-        <div class="main-menu">
+        <header class="main-menu">
             <img
                 src="./src/images/audio-off.svg"
                 id="audio-on-off"
                 alt="audio-on-off-button"
+                aria-label="Toggle Audio On/Off"
                 width="25"
             />
             <div class="menu">
-                <div class="game-logo">
-                    <h1>Mario</h1>
-                    <h2>Jump</h2>
+                <div class="menu-logo">
+                    <div class="menu-logo-mario">
+                        <span id="red">M</span>
+                        <span id="green">a</span>
+                        <span id="blue">r</span>
+                        <span id="red">i</span>
+                        <span id="yellow">o</span>
+                    </div>
+                    <div class="menu-logo-jump">
+                        <span id="green">J</span>
+                        <span id="yellow">u</span>
+                        <span id="red">m</span>
+                        <span id="blue">p</span>
+                    </div>
                 </div>
-                <div class="menu-btns">
+                <div class="menu-options">
                     <span class="pt pt-1"
                         ><img src="/src/images/point.png" alt="" width="8"
                     /></span>
@@ -54,17 +52,27 @@
                     <span class="pt pt-4"
                         ><img src="/src/images/point.png" alt="" width="8"
                     /></span>
-                    <div class="button new-game">
+                    <div class="menu-item new-game">
                         <button aria-label="Start New Game">NEW GAME</button>
+                        <img
+                            src="./src/images/mushroom.png"
+                            alt="selected menu option"
+                            width="24"
+                        />
                     </div>
-                    <div class="button load-score">
+                    <div class="menu-item load-score">
                         <button aria-label="Load Score">LOAD SCORE</button>
+                        <img
+                            src="./src/images/mushroom.png"
+                            alt="selected menu option"
+                            width="24"
+                        />
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="game-board" loading="lazy">
-            <div class="info">
+        </header>
+        <main class="game-board">
+            <div class="game-board-info">
                 <div class="standard">
                     <div class="score">
                         SCORE
@@ -79,42 +87,70 @@
                     <span id="best-score">000</span>
                 </div>
             </div>
-            <div class="timer" loading="lazy">0</div>
+            <div class="game-board-timer">0</div>
             <img
                 src="./src/images/clouds.webp"
-                alt="clouds"
+                alt="clouds: visual element crossing the sky"
                 class="clouds"
                 width="330"
                 loading="lazy"
             />
             <img
                 src="./src/images/mario.gif"
-                alt="mario"
+                alt="mario: main character"
                 class="mario"
                 width="150"
                 loading="lazy"
             />
             <img
                 src="./src/images/pipe.webp"
-                alt="pipe"
+                alt="pipe: mario's obstacle"
                 class="pipe"
                 width="75"
                 loading="lazy"
             />
-            <div class="ground" loading="lazy"></div>
-            <div class="game-over">
+            <div class="ground"></div>
+            <div class="game-board-game-over" role="alert">
                 <div class="game-over-container">
                     <img src="./src/images/game-over.webp" alt="game-over" width="450" />
                     <p>Press *SPACE* to play again</p>
-                    <div class="button return-menu-btn">
+                    <div class="game-over-return-btn">
                         <button aria-label="Return to Menu">BACK TO MENU</button>
                     </div>
                 </div>
             </div>
-            <div class="pause">
+            <div class="game-board-pause" role="alert">
                 <p id="pause">||</p>
                 <p id="pause-text">PAUSED</p>
             </div>
-        </div>
+        </main>
+        <footer>
+            <audio
+                src="./src/audio/mario-song.m4a"
+                id="background-music"
+                loop
+                aria-hidden="true"
+                muted
+                preload="none"
+            ></audio>
+            <audio
+                src="./src/audio/jump.mp3"
+                id="jump-audio"
+                aria-hidden="true"
+                preload="none"
+            ></audio>
+            <audio
+                src="./src/audio/punctuation-mark.mp3"
+                id="punctuation-mark-audio"
+                aria-hidden="true"
+                preload="none"
+            ></audio>
+            <audio
+                src="./src/audio/game-over.mp3"
+                id="game-over-audio"
+                aria-hidden="true"
+                preload="none"
+            ></audio>
+        </footer>
     </body>
 </html>
