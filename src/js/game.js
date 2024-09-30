@@ -5,6 +5,8 @@ import { Pipe } from "./pipe.js";
 
 export class Game {
     constructor(getScore, musicOn) {
+        Game.instance = this;
+
         // Game menu
         this.mainMenu = document.querySelector(".main-menu");
 
@@ -45,30 +47,54 @@ export class Game {
         this.restartGame = this.restartGame.bind(this);
     }
 
+    static getInstance(getScore, musicOn) {
+        if (!Game.instance) {
+            Game.instance = new Game(getScore, musicOn);
+        }
+        return Game.instance;
+    }
+
+    static resetInstance() {
+        Game.instance = null;
+    }
+
     start() {
         this.setup();
-        let count = 0;
+
+        let count = 3;
         this.timerElement.style.display = "flex";
+
         const stopWatch = setInterval(() => {
-            count++;
-            if (count <= 3) {
-                this.timerElement.textContent = count;
-            } else {
+            count--;
+            if (count <= 0) {
                 this.timerElement.style.display = "none";
                 clearInterval(stopWatch);
+                this.run();
             }
-            if (count === 4) this.run();
+            this.timerElement.textContent = count;
         }, 1000);
+
+        count = 3;
     }
 
     setup() {
-        this.resetCount();
+        this.removeEventListeners();
+
         this.gamerOverElement.style.display = "none";
+        this.pauseElement.style.display = "none";
+        this.bestScoreElement.style.display = "none";
+        this.timerElement.textContent = 3;
+
+        this.stopCount();
+        this.resetCount();
 
         this.mario.setup();
         this.pipe.setup();
         this.clouds.setup();
         this.ground.setup();
+
+        this.gameOverFlag = false;
+        this.isPausedFlag = false;
     }
 
     run() {
@@ -83,15 +109,6 @@ export class Game {
 
         this.checkCollision();
         document.addEventListener("keydown", this.handlePause);
-    }
-
-    startOver() {
-        document.addEventListener("keydown", this.handlePause);
-
-        this.mario.run();
-        this.pipe.run();
-        this.clouds.run();
-        this.ground.run();
     }
 
     startCount() {
@@ -121,6 +138,21 @@ export class Game {
         this.time = 0;
     }
 
+    resumeGame() {
+        document.addEventListener("keydown", this.handlePause);
+
+        this.mario.run();
+        this.pipe.run();
+        this.clouds.run();
+        this.ground.run();
+    }
+
+    removeEventListeners() {
+        document.removeEventListener("keydown", this.restartGame);
+        document.removeEventListener("keydown", this.handlePause);
+        document.removeEventListener("keydown", this.handleResume);
+    }
+
     checkCollision() {
         const loop = setInterval(() => {
             const pipePosition = this.pipe.getPosition();
@@ -133,6 +165,7 @@ export class Game {
                 marioPosition < 160
             ) {
                 this.gameOverFlag = true;
+                this.removeEventListeners();
                 if (!this.isPausedFlag) this.gameOver(marioPosition);
                 clearInterval(loop);
             }
@@ -152,17 +185,29 @@ export class Game {
 
         this.gamerOverElement.style.display = "flex";
 
-        document.addEventListener("keydown", this.restartGame);
-        document.removeEventListener("keydown", this.handlePause);
+        setTimeout(() => {
+            document.addEventListener("keydown", this.restartGame);
+        }, 3000);
+    }
+
+    restartGame(event) {
+        console.log(this.gameOverFlag);
+        if (this.gameOverFlag && event.code === "Space") {
+            this.removeEventListeners();
+
+            if (this.musicOn) this.music.play();
+
+            this.resetCount();
+
+            this.gameOverFlag = false;
+            this.gamerOverElement.style.display = "none";
+
+            this.start();
+        }
     }
 
     handlePause(event) {
-        if (
-            event.keyCode === 27 &&
-            this.gamerOverElement.style.display !== "flex" &&
-            !this.isPausedFlag &&
-            !this.stopWatchFlag
-        ) {
+        if (event.code === "Escape" && !this.gameOverFlag && !this.isPausedFlag) {
             this.isPausedFlag = true;
             this.stopCount();
 
@@ -179,27 +224,14 @@ export class Game {
     }
 
     handleResume(event) {
-        if (event.keyCode === 27 && this.isPausedFlag) {
+        if (event.code === "Escape" && this.isPausedFlag) {
             this.isPausedFlag = false;
             this.pauseElement.style.display = "none";
 
             document.removeEventListener("keydown", this.handleResume);
 
-            this.startOver();
+            this.resumeGame();
             this.startCount();
-        }
-    }
-
-    restartGame(event) {
-        if (this.gameOverFlag && event.keyCode === 32) {
-            if (this.musicOn) this.music.play();
-
-            this.resetCount();
-
-            this.gameOverFlag = false;
-            this.gamerOverElement.style.display = "none";
-
-            this.start();
         }
     }
 
@@ -223,7 +255,7 @@ export class Game {
         const score = localStorage.getItem("score");
         const scoreParsed = score ? JSON.parse(score) : 0;
 
-        if (scoreParsed != 0)  {
+        if (scoreParsed != 0) {
             this.bestScoreElement.style.display = "flex";
             this.bestScoreElement.textContent = `BEST SCORE: ${scoreParsed}`;
             this.saveScoreRecord(scoreParsed);

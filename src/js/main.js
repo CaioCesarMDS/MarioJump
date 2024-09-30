@@ -28,20 +28,26 @@ document.addEventListener("DOMContentLoaded", () => {
     // Start a new game
     newGameBtn.addEventListener("click", () => {
         mainMenu.style.display = "none";
-        const game = new Game(false, musicOn);
+        const game = Game.getInstance(false, musicOn);
         game.start();
     });
 
     // Start a game showing the last record
     loadScoreBtn.addEventListener("click", () => {
         mainMenu.style.display = "none";
-        const game = new Game(true, musicOn);
+        const game = Game.getInstance(true, musicOn);
         game.start();
     });
 
     // Return to menu
     returnMenu.addEventListener("click", () => {
+        const game = Game.getInstance();
+        game.setup();
+
+        Game.resetInstance();
+
         mainMenu.style.display = "flex";
+
         if (musicOn) music.play();
     });
 });
