@@ -1,53 +1,60 @@
 import { Game } from "./game.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-    let musicOn = false;
+class Main {
+    constructor() {
+        this.mainMenu = document.querySelector(".main-menu");
 
-    const mainMenu = document.querySelector(".main-menu");
-    const audioImg = document.getElementById("audio-on-off");
-    const music = document.getElementById("background-music");
-    const newGameBtn = document.querySelector(".new-game");
-    const loadScoreBtn = document.querySelector(".load-score");
-    const returnMenu = document.querySelector(".game-over-return-btn");
+        this.audioImg = document.getElementById("audio-on-off");
+        this.music = document.getElementById("background-music");
+        this.newGameBtn = document.querySelector(".new-game");
+        this.loadScoreBtn = document.querySelector(".load-score");
+        this.returnMenu = document.querySelector(".game-over-return-btn");
+
+        this.musicOn = false;
+
+        this.initEvents();
+    }
+
+    initEvents() {
+        this.audioImg.addEventListener("click", () => this.toggleMusic());
+        this.newGameBtn.addEventListener("click", () => this.starGame(false));
+        this.loadScoreBtn.addEventListener("click", () => this.starGame(true));
+        this.returnMenu.addEventListener("click", () => this.returnToMenu());
+    }
 
     // Turn music on or off
-    audioImg.addEventListener("click", () => {
-        if (musicOn) {
-            audioImg.src = "./src/images/audio-off.svg";
-            music.pause();
-            musicOn = false;
+    toggleMusic() {
+        if (this.musicOn) {
+            this.audioImg.src = "./src/images/audio-off.svg";
+            this.music.pause();
+            this.musicOn = false;
         } else {
-            audioImg.src = "./src/images/audio-on.svg";
-            music.muted = false;
-            music.volume = 0.1;
-            music.play();
-            musicOn = true;
+            this.audioImg.src = "./src/images/audio-on.svg";
+            this.music.muted = false;
+            this.music.volume = 0.1;
+            this.music.play();
+            this.musicOn = true;
         }
-    });
+    }
 
-    // Start a new game
-    newGameBtn.addEventListener("click", () => {
-        mainMenu.style.display = "none";
-        const game = Game.getInstance(false, musicOn);
+    starGame(getScore) {
+        this.mainMenu.style.display = "none";
+        const game = Game.getInstance(getScore, this.musicOn);
         game.start();
-    });
+    }
 
-    // Start a game showing the last record
-    loadScoreBtn.addEventListener("click", () => {
-        mainMenu.style.display = "none";
-        const game = Game.getInstance(true, musicOn);
-        game.start();
-    });
-
-    // Return to menu
-    returnMenu.addEventListener("click", () => {
+    returnToMenu() {
         const game = Game.getInstance();
         game.setup();
 
         Game.resetInstance();
 
-        mainMenu.style.display = "flex";
+        this.mainMenu.style.display = "flex";
 
-        if (musicOn) music.play();
-    });
+        if (this.musicOn) this.music.play();
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    new Main();
 });
