@@ -30,12 +30,12 @@ p {
 
 button {
     text-align: center;
-    font-size: 2em;
+    font-size: 2.5em;
     letter-spacing: 2px;
+    font-weight: 600;
     flex-grow: 1;
-    color: wheat;
+    color: #010101;
     background-color: transparent;
-    text-shadow: 2px 2px 0px black;
     transition: transform .5s ;
 }
 
@@ -44,18 +44,3 @@ button:hover {
     transform: scale(1.1);
 }
 
-#red {
-    color: red;
-}
-
-#green {
-    color: #4bc04b;
-}
-
-#blue {
-    color: blue;
-}
-
-#yellow {
-    color: #d6d626;
-}

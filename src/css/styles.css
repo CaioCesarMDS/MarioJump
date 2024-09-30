@@ -39,52 +39,29 @@
     align-items: center;
 }
 
-.menu-logo-mario span {
+#menu-logo-mario {
     font-size: 8em;
+    color: red;
 }
 
-.menu-logo-jump span {
+#menu-logo-jump {
     font-size: 7em;
+    color: #0073ff;
 }
 
 .menu-options {
-    margin-top: 3em;
+    background-image: url(../images/parchment.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 26%;
+    flex-direction: column;
+    width: 50%;
     height: 100%;
+    margin-top: 3em;
     gap: 2em;
-    background-color: #b0500c;
-    border-top: wheat solid 3px;
-    border-left: wheat solid 3px;
-    border-right: black solid 3px;
-    border-bottom: black solid 3px;
-}
-
-.pt {
-    position: absolute;
-}
-
-.pt-1 {
-    top: 0.5em;
-    left: 0.5em;
-}
-
-.pt-2 {
-    top: 0.5em;
-    right: 0.5em;
-}
-
-.pt-3 {
-    bottom: 0.5em;
-    right: 0.5em;
-}
-
-.pt-4 {
-    bottom: 0.5em;
-    left: 0.5em;
 }
 
 .menu-options .menu-item {
@@ -95,6 +72,7 @@
 }
 
 .menu-options .menu-item img {
+    left: 9em;
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.3s ease;
