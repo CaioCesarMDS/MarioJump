@@ -42,9 +42,9 @@ export class Game {
         this.clouds = new Clouds();
         this.ground = new Ground();
 
+        this.restartListener;
         this.handlePause = this.handlePause.bind(this);
         this.handleResume = this.handleResume.bind(this);
-        this.restartGame = this.restartGame.bind(this);
     }
 
     static getInstance(getScore, musicOn) {
@@ -148,7 +148,9 @@ export class Game {
     }
 
     removeEventListeners() {
-        document.removeEventListener("keydown", this.restartGame);
+        if (this.restartListener) {
+            document.removeEventListener("keydown", this.restartListener);
+        }
         document.removeEventListener("keydown", this.handlePause);
         document.removeEventListener("keydown", this.handleResume);
     }
@@ -185,13 +187,22 @@ export class Game {
 
         this.gamerOverElement.style.display = "flex";
 
+        let canRestart = false;
+
+        this.restartListener = (event) => {
+            if (canRestart && event.code === "Space") {
+                this.restartGame(event);
+            }
+        };
+
+        document.addEventListener("keydown", this.restartListener);
+
         setTimeout(() => {
-            document.addEventListener("keydown", this.restartGame);
+            canRestart = true;
         }, 3000);
     }
 
     restartGame(event) {
-        console.log(this.gameOverFlag);
         if (this.gameOverFlag && event.code === "Space") {
             this.removeEventListeners();
 
